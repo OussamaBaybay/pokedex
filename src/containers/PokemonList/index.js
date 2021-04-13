@@ -17,7 +17,6 @@ function PokemonList() {
 	useEffect(() => {
 		async function getData() {
 			const res = await axios.get(`https://pokeapi.co/api/v2/pokemon`);
-			console.log(res);
 			setNextUrl(res.data.next);
 			await pokemonInfos(res.data.results);
 			setLoading(false);
