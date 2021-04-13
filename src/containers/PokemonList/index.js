@@ -17,6 +17,7 @@ function PokemonList() {
 	useEffect(() => {
 		async function getData() {
 			const res = await axios.get(`https://pokeapi.co/api/v2/pokemon`);
+			console.log(res);
 			setNextUrl(res.data.next);
 			await pokemonInfos(res.data.results);
 			setLoading(false);
@@ -72,7 +73,7 @@ function PokemonList() {
 				<a href="#">Pokedex</a>
 			</NavBar>
 			{loading ? (
-				<h1>loading...</h1>
+				<h1 data-testid="loading">loading...</h1>
 			) : (
 				<InfiniteScroll
 					dataLength={pokemonData.length}
@@ -88,7 +89,7 @@ function PokemonList() {
 						></div>
 					}
 				>
-					<PokemonListGrid>
+					<PokemonListGrid data-testid="pokemons">
 						{pokemonData.map((pokemon) => (
 							<PokemonCard
 								key={pokemon.id}
